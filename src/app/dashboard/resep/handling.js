@@ -40,9 +40,3 @@ export const dropWaktuMinum = (event, setState) => {
 export const dropKondisi = (event, setState) => {
     setState(event.target.value);
 };
-
-// keyup keterangan tambahan
-// export const setKeteranganTambahan = (event, setState) => {
-//     let val = event.target.value
-//     setState(val);
-// };

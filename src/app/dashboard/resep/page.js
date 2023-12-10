@@ -1,10 +1,10 @@
 "use client";
 // import React from 'react'
 import React, { useState } from 'react'
-import { dropBerapaKali, dropWaktuMinum, dropKondisi, dropJenisObat } from './handling'
-import { useDataContext } from './DataCOntext';
+import { dropBerapaKali, dropWaktuMinum, dropKondisi, dropJenisObat } from './Handling'
+import { UseDataContext } from '../DataContext';
 
-export default function page() {
+export default function Page() {
 
   let [valueJenisObat, setJenisObat] = useState('');
   const [valueKomposisi, setKomposisi] = useState('');
@@ -35,7 +35,7 @@ export default function page() {
     instruksiApt = '-'
   }
 
-  const { resep, dataResep } = useDataContext();
+  const { resep, DataResep } = UseDataContext();
   const inputResep = (e) => {
 
     if (!namaObat || !aturanPakai || !valueJumlah || !instruksiApt) {
@@ -55,7 +55,7 @@ export default function page() {
       ...resep, dataEntry
     ];
 
-    dataResep(newResep);
+    DataResep(newResep);
     setJenisObat('Obat Jadi')
     setJumlah('');
     setKomposisi('')
@@ -76,7 +76,7 @@ export default function page() {
       updatedResep.splice(index, 1);
 
       // Perbarui konteks dengan data yang baru
-      dataResep(updatedResep);
+      DataResep(updatedResep);
     }
   }
 
@@ -86,11 +86,11 @@ export default function page() {
         <div className='w-2/5 mr-5'>
           <form onSubmit={inputResep}>
             <div className='mt-4'>
-              <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">NAMA OBAT</label>
+              <label htmlFor="jenis_obat" className="block text-sm font-medium leading-6 text-gray-900">NAMA OBAT</label>
               <div className="relative mt-1 rounded-md shadow-sm">
                 <div className="absolute inset-y-0 Left-0 flex items-center">
                   <label htmlFor="jenis_obat" className="sr-only">jenis obat</label>
-                  <select id="jenis_obat" name="jenisobat" className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-2 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+                  <select id="jenis_obat" name="jenisobat" className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-2 text-gray-500 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                     // value={valueJenisObat}
                     onChange={
                       (event) => dropJenisObat(event, setJenisObat)
@@ -100,7 +100,7 @@ export default function page() {
                     <option value="Racikan">Racikan</option>
                   </select>
                 </div>
-                <input type="text" name="namaobat" id="nama_obat" className="block w-full rounded-md border-0 py-1.5 pl-28 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100" placeholder="Masukkan Nama Obat" readOnly={false} value={valueNamaObat}
+                <input type="text" name="namaobat" id="nama_obat" className="block w-full rounded-md border-0 py-1.5 pl-28 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100" placeholder="Masukkan Nama Obat" readOnly={false} value={valueNamaObat}
                   onChange={
                     (event) => setNamaObat(event.target.value)
                   }
@@ -123,7 +123,7 @@ export default function page() {
             <div className='mt-3'>
               <label htmlFor="jumlah" className="block text-sm font-medium leading-6 text-gray-900">JUMLAH</label>
               <div className="relative mt-1 rounded-md shadow-sm">
-                <input type="number" name="jumlah" id="jumlah" className="block w-full rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Masukkan Nama Obat"
+                <input type="number" name="jumlah" id="jumlah" className="block w-full rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Masukkan Nama Obat"
                   value={valueJumlah}
                   onChange={
                     (event) => setJumlah(event.target.value)
@@ -137,6 +137,7 @@ export default function page() {
               <div className='flex justify-between'>
                 <select className='border rounded-md border-0 ring-1 ring-inset ring-gray-300 w-34 py-1.5 focus:ring-indigo-600 pl-2'
                   value={valueBerapaKali}
+                  id="aturan_minum"
                   onChange={
                     (event) => dropBerapaKali(event, setBerapaKali)
                   }
@@ -150,6 +151,7 @@ export default function page() {
                   <option>5 X 1</option>
                 </select>
                 <select className='border rounded-md border-0 ring-1 ring-inset ring-gray-300 w-48 py-1.5 focus:ring-indigo-600 pl-2'
+                  id='waktu_minum'
                   value={valueWaktuMinum}
                   onChange={
                     (event) => dropWaktuMinum(event, setWaktuMinum)
@@ -165,6 +167,7 @@ export default function page() {
                 </select>
                 <select className='border rounded-md border-0 ring-1 ring-inset ring-gray-300 w-48 py-1.5 focus:ring-indigo-600 pl-2'
                   value={valueKondisi}
+                  id="kondisi"
                   onChange={
                     (event) => dropKondisi(event, setKondisi)
                   }
@@ -177,7 +180,7 @@ export default function page() {
               </div>
             </div>
             <div className='mt-3'>
-              <input type="text" name="keterangan_tambahan" id="keterangan_tambahan" className="block w-full rounded-md border-0 py-1.5 pl-2 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Keterangan Tambahan"
+              <input type="text" name="keterangan_tambahan" id="keterangan_tambahan" className="block w-full rounded-md border-0 py-1.5 pl-2 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Keterangan Tambahan"
                 value={valueKeteranganTambahan}
                 onChange={
                   (event) => setKeteranganTambahan(event.target.value)
@@ -187,11 +190,11 @@ export default function page() {
             </div>
 
             <div className='mt-3'>
-              <label htmlFor="previewAturanMinum" className="block text-sm font-medium leading-6 text-gray-900 mb-1">PREVIEW ATURAN MINUM</label>
+              <label htmlFor="preview_AturanMinum" className="block text-sm font-medium leading-6 text-gray-900 mb-1">PREVIEW ATURAN MINUM</label>
               <input type="text"
                 name="previewAturanMinum"
-                id="price"
-                className="read-only:bg-gray-100 block w-full rounded-md border-0 py-1.5 pl-2 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                id="preview_AturanMinum"
+                className="read-only:bg-gray-100 block w-full rounded-md border-0 py-1.5 pl-2 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 readOnly={true}
                 value={aturanPakai}
                 placeholder="Akan Terisi Otomatis" />
@@ -201,7 +204,7 @@ export default function page() {
               <label htmlFor="instruksi_tambah" className="block text-sm font-medium leading-6 text-gray-900 mb-1">INSTRUKSI TAMBAHAN UNTUK APOTEKER</label>
               <input type="text"
                 name="instruksi_apt" id="instruksi_tambah"
-                className="block w-full rounded-md border-0 py-1.5 pl-2 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Tulis Instruksi Untuk Apoteker"
+                className="block w-full rounded-md border-0 py-1.5 pl-2 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Tulis Instruksi Untuk Apoteker"
                 value={valueInstruksiApt}
                 onChange={
                   (event) => setInstruksiApt(event.target.value)

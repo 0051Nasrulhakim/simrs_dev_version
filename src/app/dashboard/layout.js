@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect } from 'react'
 import Link from "next/link";
-import { DataProvider } from './resep/DataCOntext'
+import { DataProvider } from './DataContext'
 
 export default function layout({ children }) {
   return (

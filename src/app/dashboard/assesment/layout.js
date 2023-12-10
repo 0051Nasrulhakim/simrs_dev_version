@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import Link from "next/link";
+import { DataProvider } from '../DataContext'
 
 export default function Layout({ children }) {
     const [activeMenu, setActiveMenu] = useState('nav-dok');
@@ -30,7 +31,11 @@ export default function Layout({ children }) {
                         PERAWAT
                     </Link>
                 </div>
-                <div className='border p-2 border-gray-700 mb-10 rounded-tl-md rounded-tr-md'>{children}</div>
+                <div className='border p-2 border-gray-700 mb-10 rounded-tl-md rounded-tr-md'>
+
+                        {children}
+
+                </div>
             </div>
         </div>
     );
