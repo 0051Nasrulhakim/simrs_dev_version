@@ -1,20 +1,21 @@
 "use client"
 
-import React, { useState } from 'react'
-import RadioGrup from './RadioGrup'
+import React, { useState, useEffect } from 'react'
 import { UseDataContext } from '../../DataContext';
 
 
 export default function Page() {
 
     const [valueAnamnesa, setAnamnesa] = useState('');
-    let [valueTinggiBadan, setTinggiBadan] = useState(0);
-    let [valueKesadaran, setKesadaran] = useState(0);
-    let [valueNadi, setNadi] = useState(0);
-    let [valueSuhuTubuh, setSuhuTubuh] = useState(0);
+    let [valueTinggiBadan, setTinggiBadan] = useState('');
+    let [valueKesadaran, setKesadaran] = useState('');
+    let [valueNadi, setNadi] = useState('');
+    let [valueSuhuTubuh, setSuhuTubuh] = useState('');
+    let [valueBeratBadan, setBeratBadan] = useState('');
+    let [valueTekananAtas, setTekananAtas] = useState('');
+    let [valueTekananBawah, setTekananBawah] = useState('');
     const { assesmentDokter, DataAssesmentDokter } = UseDataContext();
-
-
+    const [selectedOption, setSelectedOption] = useState('');
 
     const options = [
         { label: 'conscious', value: 'conscious' },
@@ -22,10 +23,13 @@ export default function Page() {
         { label: 'Delirium', value: 'Delirium' },
         { label: 'Somnolen', value: 'Somnolen' },
     ]
-
-    const [selectedOption, setSelectedOption] = useState('');
-    const handleOptionChange = (value) => {
+    const handleOptionChange = (event) => {
+        const value = event.target.value;
         setSelectedOption(value);
+        DataAssesmentDokter((prevData) => ({
+            ...prevData,
+            kesadaran_umum: value,
+        }));
     };
 
     const handleAnamnesa = (event) => {
@@ -73,6 +77,56 @@ export default function Page() {
         }));
     };
 
+    const handleBeratBadan = (event) => {
+        const newValue = event.target.value;
+        setBeratBadan(newValue);
+        DataAssesmentDokter((prevData) => ({
+            ...prevData,
+            berat_badan: newValue,
+        }));
+    };
+
+    const handleTekananAtas = (event) => {
+        const newValue = event.target.value;
+        setTekananAtas(newValue);
+        DataAssesmentDokter((prevData) => ({
+            ...prevData,
+            tekanan_darah_atas: newValue,
+        }));
+    };
+
+    const handleTekananBawah = (event) => {
+        const newValue = event.target.value;
+        setTekananBawah(newValue);
+        DataAssesmentDokter((prevData) => ({
+            ...prevData,
+            tekanan_darah_bawah: newValue,
+        }));
+    };
+
+    useEffect(() => {
+        setAnamnesa(assesmentDokter.anamnesa);
+        setKesadaran(assesmentDokter.kesadaran || '');
+        setTinggiBadan(assesmentDokter.tinggi_badan || '')
+        setNadi(assesmentDokter.nadi || '')
+        setSuhuTubuh(assesmentDokter.suhu_tubuh || '')
+        setBeratBadan(assesmentDokter.berat_badan || '')
+        setTekananAtas(assesmentDokter.tekanan_darah_atas || '')
+        setTekananBawah(assesmentDokter.tekanan_darah_bawah || '')
+        if (assesmentDokter.kesadaran_umum) {
+            setSelectedOption(assesmentDokter.kesadaran_umum);
+        }
+    }, [
+        assesmentDokter.anamnesa,
+        assesmentDokter.kesadaran_umum,
+        assesmentDokter.kesadaran,
+        assesmentDokter.tinggi_badan,
+        assesmentDokter.nadi,
+        assesmentDokter.suhu_tubuh,
+        assesmentDokter.berat_badan,
+        assesmentDokter.tekanan_darah_atas,
+        assesmentDokter.tekanan_darah_bawah,
+    ]);
 
     return (
         <div className='my-3'>
@@ -82,7 +136,7 @@ export default function Page() {
                     className='border w-full h-32 rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300'
                     id="valueAnamnesa"
                     name='anamnesa'
-                    value={assesmentDokter.anamnesa}
+                    value={valueAnamnesa}
                     onChange={
                         handleAnamnesa
                     }
@@ -97,7 +151,7 @@ export default function Page() {
                         <div className="relative mt-1 rounded-md shadow-sm">
                             <input type="text"
 
-                                value={assesmentDokter.kesadaran || ''}
+                                value={valueKesadaran}
                                 onChange={
                                     handleKesadaran
                                 }
@@ -128,11 +182,10 @@ export default function Page() {
                             <input type="number"
                                 name="tinggiBadan"
                                 id="tinggi_badan" className="block w-full rounded-md border-0 py-1.5 pl-2 pr-14 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100"
-                                value={assesmentDokter.tinggi_badan || ''}
+                                value={valueTinggiBadan}
                                 onChange={
                                     handleTinggiBadan
                                 }
-                                disabled={false}
                                 placeholder="Masukkan Tinggi Badan"
                             ></input>
                         </div>
@@ -162,7 +215,7 @@ export default function Page() {
                             <input type="number"
                                 name="nadi"
                                 id="nadi"
-                                value={assesmentDokter.nadi || ''}
+                                value={valueNadi}
                                 onChange={
                                     handleNadi
                                 }
@@ -193,15 +246,15 @@ export default function Page() {
                             </div>
 
                             <input type="number"
-                            disabled={false}
-                            readOnly={false}
-                             name="SuhuTubuh" 
-                             id="suhu_tubuh" 
-                             value={assesmentDokter.suhu_tubuh || ''}
+                                disabled={false}
+                                readOnly={false}
+                                name="SuhuTubuh"
+                                id="suhu_tubuh"
+                                value={valueSuhuTubuh}
                                 onChange={
                                     handleSuhuTubuh
                                 }
-                             className="block w-full rounded-md border-0 py-1.5 pl-2 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100" placeholder="Suhu Tubuh Pasien"
+                                className="block w-full rounded-md border-0 py-1.5 pl-2 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100" placeholder="Suhu Tubuh Pasien"
                             />
                         </div>
                     </div>
@@ -211,7 +264,20 @@ export default function Page() {
                     <div className='mt-4'>
                         <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">Kesadaran Umum</label>
                         <div className="relative rounded-md shadow-sm">
-                            <RadioGrup className='border' options={options} onChange={handleOptionChange} />
+                            <div className="space-y-2">
+                                {options.map((option) => (
+                                    <label key={option.value} className="inline-flex items-center">
+                                        <input
+                                            type="radio"
+                                            value={option.value}
+                                            checked={
+                                                selectedOption === option.value}
+                                            onChange={handleOptionChange}
+                                        />
+                                        <span className="mr-5 ml-0.5">{option.label}</span>
+                                    </label>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -236,7 +302,15 @@ export default function Page() {
                                 </select>
                             </div>
 
-                            <input type="number" name="beratBadan" id="berat_badan" className="block w-full rounded-md border-0 py-1.5 pl-2 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100" placeholder="Masukkan Suhu Tubuh Pasien"
+                            <input type="number"
+                                name="beratBadan"
+                                id="berat_badan"
+                                className="block w-full rounded-md border-0 py-1.5 pl-2 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100"
+                                value={valueBeratBadan}
+                                onChange={
+                                    handleBeratBadan
+                                }
+                                placeholder="Masukkan Suhu Tubuh Pasien"
                             />
                         </div>
                     </div>
@@ -262,7 +336,15 @@ export default function Page() {
                                     </select>
                                 </div>
 
-                                <input type="number" name="tekananDarahAtas" id="tekanan_darah_atas" className="block w-full rounded-tl-md rounded-bl-md border-0 py-1.5 pl-2 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100" placeholder="00.00"
+                                <input type="number"
+                                    name="tekananDarahAtas"
+                                    id="tekanan_darah_atas"
+                                    value={valueTekananAtas}
+                                    onChange={
+                                        handleTekananAtas
+                                    }
+                                    className="block w-full rounded-tl-md rounded-bl-md border-0 py-1.5 pl-2 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100"
+                                    placeholder="00.00"
                                 />
                             </div>
                             <div className="relative mt-1 w-[50%] rounded-md shadow-sm">
@@ -282,13 +364,18 @@ export default function Page() {
                                         <option value="">mmHg</option>
                                     </select>
                                 </div>
-                                <input type="number" name="tekananDarahBawah" id="tekanan_darah_bawah" className="block w-full border-0 py-1.5 pl-2 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100 rounded-tr-md rounded-br-md" placeholder="00.00"
+                                <input type="number"
+                                    name="tekananDarahBawah"
+                                    id="tekanan_darah_bawah"
+                                    value={valueTekananBawah}
+                                    onChange={
+                                        handleTekananBawah
+                                    }
+                                    className="block w-full border-0 py-1.5 pl-2 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100 rounded-tr-md rounded-br-md" placeholder="00.00"
                                 />
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

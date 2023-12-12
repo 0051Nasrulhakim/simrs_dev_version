@@ -29,6 +29,10 @@ const Page = () => {
           {assesmentDokter.anamnesa}
         </li>
         <li>
+          Kesadaran Umum :
+          {assesmentDokter.kesadaran_umum}
+        </li>
+        <li>
           Kesadaran :
           {assesmentDokter.kesadaran}
         </li>
@@ -43,6 +47,14 @@ const Page = () => {
         <li>
           Suhu Tubuh :
           {assesmentDokter.suhu_tubuh}
+        </li>
+        <li>
+          Berat Badan :
+          {assesmentDokter.berat_badan}
+        </li>
+        <li>
+          Tekanan Darah : 
+          {assesmentDokter.tekanan_darah_atas ? assesmentDokter.tekanan_darah_atas : '0'}/{assesmentDokter.tekanan_darah_bawah ? assesmentDokter.tekanan_darah_bawah : '0'}
         </li>
       </ul>
     </div>

@@ -1,7 +1,7 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from "next/link";
-import { DataProvider } from '../DataContext'
+import { usePathname } from 'next/navigation';
 
 export default function Layout({ children }) {
     const [activeMenu, setActiveMenu] = useState('nav-dok');
@@ -10,10 +10,26 @@ export default function Layout({ children }) {
         setActiveMenu(menuId);
     };
 
+    const pathname = usePathname()
+
+    useEffect(() => {
+        // Update activeMenu based on the current route
+        switch (pathname) {
+          case '/dashboard/assesment/dokter':
+            setActiveMenu('nav-dok');
+            break;
+          case '/dashboard/assesment/perawat':
+            setActiveMenu('nav-per');
+            break;
+          default:
+            setActiveMenu('nav-dok');
+        }
+      }, [pathname]);
+
     return (
-        <div className='border border-sky-900'>
+        <div className='border mt-[-0.8%] border-t-1 border-sky-900'>
             <div className='ml-4 mr-4 mb-2'>
-                <div className='flex justify-center mt-5'>
+                <div className='flex justify-center mt-[2.5%]'>
                     <Link href="/dashboard/assesment/dokter"
                         className={`p-2 border rounded-tl-md ${activeMenu === 'nav-dok' ? 'text-white border-b-0 border-gray-700 bg-gray-700 font-bold' : ''
                             }`}
@@ -32,8 +48,7 @@ export default function Layout({ children }) {
                     </Link>
                 </div>
                 <div className='border p-2 border-gray-700 mb-10 rounded-tl-md rounded-tr-md'>
-
-                        {children}
+                    {children}
 
                 </div>
             </div>

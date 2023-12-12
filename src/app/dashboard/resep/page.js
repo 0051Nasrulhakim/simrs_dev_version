@@ -81,8 +81,8 @@ export default function Page() {
   }
 
   return (
-    <div className='border border-indigo-600 mb-[20%]'>
-      <div className='flex justify-between ml-4 mr-4 mt-2 mb-5'>
+    <div className='border mt-[-0.6%] border-t-1 border-sky-900 mb-[20%]'>
+      <div className='flex justify-between ml-4 mr-4 mt-3 mb-5'>
         <div className='w-2/5 mr-5'>
           <form onSubmit={inputResep}>
             <div className='mt-4'>
