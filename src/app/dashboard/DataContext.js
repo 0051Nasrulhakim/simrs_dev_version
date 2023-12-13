@@ -7,6 +7,7 @@ const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [resep, SetResep] = useState([]);
   const [assesmentDokter, SetAsessmentDokter] = useState([]);
+  const [diagnosa, setDiagnosa] = useState([]);
 
   const DataResep = newResep => {
     SetResep(newResep);
@@ -16,8 +17,12 @@ export const DataProvider = ({ children }) => {
     SetAsessmentDokter(newAssessmentDokter);
   };
 
+  const DataDiagnosa = newDiagnosa => {
+    setDiagnosa(newDiagnosa);
+  }
+
   return (
-    <DataContext.Provider value={{ resep, DataResep, assesmentDokter, DataAssesmentDokter }}>
+    <DataContext.Provider value={{ resep, DataResep, assesmentDokter, DataAssesmentDokter, diagnosa, DataDiagnosa }}>
       {children}
     </DataContext.Provider>
   );

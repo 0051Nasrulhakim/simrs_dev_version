@@ -29,7 +29,10 @@ export default function layout({ children }) {
       case '/dashboard/penunjang':
         setActiveMenu('nav-penunjang');
         break;
-      case '/dashboard/diagnosa':
+      case '/dashboard/diagnosa/diagnosa':
+        setActiveMenu('nav-diagnosa');
+        break;
+      case '/dashboard/diagnosa/prosedur':
         setActiveMenu('nav-diagnosa');
         break;
       case '/dashboard/tindakan':
@@ -97,7 +100,7 @@ export default function layout({ children }) {
           Penunjang
         </Link>
         <Link 
-          href="/dashboard/diagnosa"
+          href="/dashboard/diagnosa/diagnosa"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-diagnosa' ?
@@ -108,7 +111,7 @@ export default function layout({ children }) {
           id='nav-diagnosa'
           onClick={() => handleMenuClick('nav-diagnosa')}
         >
-          Diagnosa
+          Diagnosa & Prosedur
         </Link>
         <Link 
           href="/dashboard/tindakan"
