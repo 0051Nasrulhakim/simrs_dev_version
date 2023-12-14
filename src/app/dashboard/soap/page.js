@@ -7,6 +7,7 @@ export default function page() {
     const [mainDiagnosa, setDiagnosaUtama] = useState([]);
     const [skunderDiagnosa, setDiagnosaSkunder] = useState([]);
     const [valAreaObjective, setAreaObjective] = useState('');
+    const [valAreaSubjective, setAreaSubjective] = useState('');
 
     const [valAreaUtama, setAreaUtama] = useState('');
     const [valAreaSkunder, setAreaSkunder] = useState('');
@@ -72,23 +73,41 @@ export default function page() {
         const formattedObjective = () => {
             let result = '';
             if (assesmentDokter.kesadaran_umum) {
-                result += `Kesadaran Umum: ${assesmentDokter.kesadaran_umum}\n`;
+                result += `Kesadaran Umum       : ${assesmentDokter.kesadaran_umum}\n`;
             }
             if (assesmentDokter.nadi) {
-                result += `Jumlah Nadi: ${assesmentDokter.nadi}\n`;
+                result += `Jumlah Nadi               : ${assesmentDokter.nadi}\n`;
             }
             if (assesmentDokter.tekanan_darah_atas && assesmentDokter.tekanan_darah_bawah) {
-                result += `Tekanan Darah: ${assesmentDokter.tekanan_darah_atas}/${assesmentDokter.tekanan_darah_bawah}\n`;
+                result += `Tekanan Darah          : ${assesmentDokter.tekanan_darah_atas}/${assesmentDokter.tekanan_darah_bawah}\n`;
             }
             if (assesmentDokter.suhu_tubuh) {
-                result += `Suhu Tubuh: ${assesmentDokter.suhu_tubuh}\n`;
+                result += `Suhu Tubuh               : ${assesmentDokter.suhu_tubuh}\n`;
             }
             return result;
         };
         setAreaObjective(formattedObjective());
 
+        setAreaSubjective(assesmentDokter.anamnesa)
+
     }, [mainDiagnosa, skunderDiagnosa, assesmentDokter])
 
+    const changeSubjective = (event) => {
+        const newValue = event.target.value;
+        setAreaSubjective(newValue);
+        // DataAssesmentDokter((prevData) => ({
+        //     ...prevData,
+        //     tinggi_badan: newValue,
+        // }));
+    };
+    const changeObjective = (event) => {
+        const newValue = event.target.value;
+        setAreaObjective(newValue);
+        // DataAssesmentDokter((prevData) => ({
+        //     ...prevData,
+        //     tinggi_badan: newValue,
+        // }));
+    };
     
 
     return (
@@ -108,8 +127,13 @@ export default function page() {
                             <textarea
                                 className='border w-full h-32 rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 mt-1 mb-[-1.5%] h-[280px]'
                                 id='subjective'
-                                value={assesmentDokter.anamnesa}
-                            />
+                                value={valAreaSubjective}
+                                onChange={
+                                    changeSubjective
+                                }
+                            >
+                                
+                            </textarea>
                         </div>
                     </div>
                     <div className='w-[24%] mr-[1%]'>
@@ -126,6 +150,9 @@ export default function page() {
                                 className='border w-full h-32 rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 mt-1 mb-[-1.5%] h-[280px]'
                                 id='objective'
                                 value={valAreaObjective}
+                                onChange={
+                                    changeObjective
+                                }
                             >
                             </textarea>
                         </div>
