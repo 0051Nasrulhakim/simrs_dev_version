@@ -43,7 +43,6 @@ export default function Page() {
   };
 
   const handleChange = (value, setOption, setTextarea) => {
-    console.log(value)
     setOption(value);
     setTextarea(value ? value.label : '');
     setOption([]);
@@ -62,7 +61,6 @@ export default function Page() {
     const newDiagnosa = [
       ...diagnosa, storeData
     ]
-    console.log(newDiagnosa)
 
     DataDiagnosa(newDiagnosa);
     setOptionDiagnosaSkunder('')
@@ -76,11 +74,9 @@ export default function Page() {
 
   const handleDeleteItem = (index) => {
     const isConfirmed = window.confirm("Apakah Anda yakin ingin menghapus item ini?");
-
     if (isConfirmed) {
       const updateDiagnosa = [...diagnosa];
       updateDiagnosa.splice(index, 1);
-
       DataDiagnosa(updateDiagnosa);
     }
   }
