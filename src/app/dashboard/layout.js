@@ -44,6 +44,9 @@ export default function layout({ children }) {
       case '/dashboard/perencanaan':
         setActiveMenu('nav-perencanaan');
         break;
+      case '/dashboard/soap':
+        setActiveMenu('nav-soap');
+        break;
       case '/dashboard/selesai':
         setActiveMenu('nav-selesai');
         break;
@@ -154,6 +157,20 @@ export default function layout({ children }) {
           onClick={() => handleMenuClick('nav-perencanaan')}
         >
           Perencanaan
+        </Link>
+        <Link 
+          href="/dashboard/soap"
+          className={
+            `p-2 px-4 
+            ${activeMenu === 'nav-soap' ?
+              'bg-white text-black border border-b-0 border-t-sky-900 border-l-sky-900 border-r-sky-900'
+              :
+              ''}`
+          }
+          id='nav-soap'
+          onClick={() => handleMenuClick('nav-soap')}
+        >
+          SOAP
         </Link>
         <Link 
           href="/dashboard/selesai"
