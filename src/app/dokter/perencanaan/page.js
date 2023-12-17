@@ -2,8 +2,15 @@
 import React, { useState, useEffect } from 'react'
 import FontAwesomeIcon from '../../fontawesome';
 import { faCheck, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { UseDataContext } from '../DataContext';
 
 export default function Page() {
+  const getDayOfWeek = (dateString) => {
+    const daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const date = new Date(dateString);
+    const dayOfWeek = date.getDay();
+    return daysOfWeek[dayOfWeek];
+  };
 
   const [kunjunganUlang, setKunjunganUlang] = useState(false);
   const [operasi, setOprasi] = useState(false);
@@ -12,14 +19,22 @@ export default function Page() {
   const [tanggalKunjunganUlang, setTanggalKunjunganUlang] = useState();
 
   const [sectionKunjungan, setSectionKunjungan] = useState(false);
-  // Fungsi untuk menangani perubahan status checkbox
+  const { perencanaan, DataPerencanaan } = UseDataContext();
+
   const checkKunjunganUlang = () => {
     setKunjunganUlang(!kunjunganUlang);
     setSectionKunjungan(!sectionKunjungan);
 
-    if(kunjunganUlang == false){
+    if (kunjunganUlang == false) {
       setHariKunjunganUlang('')
       setTanggalKunjunganUlang('')
+
+      DataPerencanaan((prevData) => ({
+        ...prevData,
+        is_kunjungan_ulang: false,
+        tanggal_Kunjungan_ulang: '',
+        hari_kunjungan_ulang: ''
+      }));
     }
 
   };
@@ -28,22 +43,32 @@ export default function Page() {
     setOprasi(!operasi);
   };
   const handleHariKunjunganUlang = (event) => {
-    setTanggalKunjunganUlang(event.target.value);
+    
+    const tanggal_kunjungan_ulg = event.target.value
+    setTanggalKunjunganUlang(tanggal_kunjungan_ulg);
+
+    if(kunjunganUlang == true){
+      const hari_kunjungan_ulg = getDayOfWeek(tanggal_kunjungan_ulg)
+      setHariKunjunganUlang(hari_kunjungan_ulg);
+      DataPerencanaan((prevData) => ({
+        ...prevData,
+        is_kunjungan_ulang: kunjunganUlang,
+        tanggal_Kunjungan_ulang: tanggal_kunjungan_ulg,
+        hari_kunjungan_ulang: hari_kunjungan_ulg
+      }));
+    }
+
   };
 
   useEffect(() => {
-    const getDayOfWeek = (dateString) => {
-      const daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-      const date = new Date(dateString);
-      const dayOfWeek = date.getDay();
-      return daysOfWeek[dayOfWeek];
-    };
-
-    if (tanggalKunjunganUlang) {
-      const val = getDayOfWeek(tanggalKunjunganUlang)
-      setHariKunjunganUlang(val)
+    if(perencanaan.is_kunjungan_ulang == true){
+      setKunjunganUlang(true);
+      setSectionKunjungan(true);
+      setTanggalKunjunganUlang(perencanaan.tanggal_Kunjungan_ulang)
+      setHariKunjunganUlang(perencanaan.hari_kunjungan_ulang)
     }
-  }, [tanggalKunjunganUlang])
+    
+  }, [tanggalKunjunganUlang, perencanaan])
 
   return (
     <div className='border mt-[-0.6%] border-t-1 border-sky-900'>
@@ -74,6 +99,7 @@ export default function Page() {
             <label htmlFor='appointmentDate' className='block text-sm font-medium leading-6 text-gray-900'>Tanggal</label>
             <input
               type="date"
+              value={tanggalKunjunganUlang}
               onChange={handleHariKunjunganUlang}
               id="appointmentDate"
               name="appointmentDate"
