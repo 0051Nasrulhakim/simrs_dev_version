@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import FontAwesomeIcon from '../../fontawesome';
 import { faStethoscope, faBookMedical } from '@fortawesome/free-solid-svg-icons';
 
-export default function menuDiagnosa() {
+const MenuDiagnosa = () => {
     const [activeMenu, setActiveMenu] = useState('nav-diagnosa');
 
     const handleMenuClick = (menuId) => {
@@ -50,3 +50,5 @@ export default function menuDiagnosa() {
         </div>
     )
 }
+
+export default MenuDiagnosa;

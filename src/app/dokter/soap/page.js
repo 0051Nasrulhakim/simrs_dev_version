@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { UseDataContext } from '../DataContext';
 
-export default function page() {
+export default function Page() {
     const { resep, assesmentDokter, diagnosa } = UseDataContext();
     const [mainDiagnosa, setDiagnosaUtama] = useState([]);
     const [skunderDiagnosa, setDiagnosaSkunder] = useState([]);
