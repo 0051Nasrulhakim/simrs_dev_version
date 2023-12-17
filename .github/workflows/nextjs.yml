@@ -55,7 +55,7 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
 
       - name: Install dependencies
-        run: ${{ env.manager }} ${{ env.command }}
+        run: ${{ env.runner }} ${{ env.command }}
 
       - name: Build and export with Next.js
         run: ${{ env.runner }} next build && ${{ env.runner }} next export -o ./out
