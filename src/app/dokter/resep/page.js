@@ -3,6 +3,9 @@
 import React, { useState } from 'react'
 import { dropBerapaKali, dropWaktuMinum, dropKondisi, dropJenisObat } from './Handling'
 import { UseDataContext } from '../DataContext';
+import FontAwesomeIcon from '../../fontawesome';
+import { faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Page() {
 
@@ -123,7 +126,7 @@ export default function Page() {
             <div className='mt-3'>
               <label htmlFor="jumlah" className="block text-sm font-medium leading-6 text-gray-900">JUMLAH</label>
               <div className="relative mt-1 rounded-md shadow-sm">
-                <input type="number" name="jumlah" id="jumlah" className="block w-full rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Masukkan Nama Obat"
+                <input type="number" name="jumlah" id="jumlah" className="block w-full rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Masukkan Jumlah Obat"
                   value={valueJumlah}
                   onChange={
                     (event) => setJumlah(event.target.value)
@@ -217,7 +220,7 @@ export default function Page() {
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 text-sm font-bold rounded-md"
                 onClick={inputResep}
               >
-                Tambahkan
+                <FontAwesomeIcon icon={faPlus}/> Tambahkan
               </button>
             </div>
           </form>
@@ -246,10 +249,10 @@ export default function Page() {
                       <td className="py-3 px-3 border max-w-xs overflow-x-auto">{item.instruksi_apt}</td>
                       <td className="py-3 px-3 border max-w-xs overflow-x-auto">
                         <button
-                          className="bg-red-500 text-white py-1 px-2 rounded-full flex items-center justify-center hover:bg-red-700 transition duration-300 ease-in-out"
+                          className="bg-red-500 text-white py-1 px-2 h-10 w-10 rounded-full flex items-center justify-center hover:bg-red-700 transition duration-300 ease-in-out"
                           onClick={() => handleDeleteItem(index)} // Panggil fungsi dengan indeks sebagai parameter
                         >
-                          <i className="fas fa-trash mr-1"></i> -
+                          <FontAwesomeIcon icon={faTrashCan} />
                         </button>
                       </td>
                     </tr>

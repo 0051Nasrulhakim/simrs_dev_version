@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import FontAwesomeIcon from '../fontawesome';
+import { faClockRotateLeft, faUserDoctor, faFlaskVial, faStethoscope, faSuitcaseMedical, faPills, faNotesMedical, faHouseMedicalFlag, faReceipt } from '@fortawesome/free-solid-svg-icons';
 
 export default function MenuDokter() {
   const [activeMenu, setActiveMenu] = useState('');
@@ -55,7 +57,7 @@ export default function MenuDokter() {
   return (
     <div>
       <div className='flex flex-row bg-sky-900 mt-2 text-white'>
-      <Link
+        <Link
           href="/dokter/riwayat"
           className={
             `p-2 px-4 
@@ -67,6 +69,7 @@ export default function MenuDokter() {
           id='nav-riwayat'
           onClick={() => handleMenuClick('nav-riwayat')}
         >
+          <FontAwesomeIcon icon={faClockRotateLeft} className='mr-1' />
           Riwayat
         </Link>
         <Link
@@ -81,9 +84,10 @@ export default function MenuDokter() {
           id='nav-assesment'
           onClick={() => handleMenuClick('nav-assesment')}
         >
+          <FontAwesomeIcon icon={faUserDoctor} className='mr-1' />
           Assesment
         </Link>
-        <Link 
+        <Link
           href="/dokter/penunjang"
           className={
             `p-2 px-4 
@@ -95,9 +99,10 @@ export default function MenuDokter() {
           id='nav-penunjang'
           onClick={() => handleMenuClick('nav-penunjang')}
         >
+          <FontAwesomeIcon icon={faFlaskVial} className='mr-1' />
           Penunjang
         </Link>
-        <Link 
+        <Link
           href="/dokter/diagnosa/diagnosa"
           className={
             `p-2 px-4 
@@ -109,9 +114,10 @@ export default function MenuDokter() {
           id='nav-diagnosa'
           onClick={() => handleMenuClick('nav-diagnosa')}
         >
+          <FontAwesomeIcon icon={faStethoscope} className='mr-1' />
           Diagnosa & Prosedur
         </Link>
-        <Link 
+        <Link
           href="/dokter/tindakan"
           className={
             `p-2 px-4 
@@ -123,9 +129,10 @@ export default function MenuDokter() {
           id='nav-tindakan'
           onClick={() => handleMenuClick('nav-tindakan')}
         >
+          <FontAwesomeIcon icon={faSuitcaseMedical} className='mr-1' />
           Tindakan
         </Link>
-        <Link 
+        <Link
           href="/dokter/resep"
           className={
             `p-2 px-4 
@@ -137,9 +144,10 @@ export default function MenuDokter() {
           id='nav-resep'
           onClick={() => handleMenuClick('nav-resep')}
         >
+          <FontAwesomeIcon icon={faPills} className='mr-1' />
           Resep
         </Link>
-        <Link 
+        <Link
           href="/dokter/perencanaan"
           className={
             `p-2 px-4 
@@ -151,9 +159,10 @@ export default function MenuDokter() {
           id='nav-perencanaan'
           onClick={() => handleMenuClick('nav-perencanaan')}
         >
+          <FontAwesomeIcon icon={faHouseMedicalFlag} className='mr-1' />
           Perencanaan
         </Link>
-        <Link 
+        <Link
           href="/dokter/soap"
           className={
             `p-2 px-4 
@@ -165,9 +174,10 @@ export default function MenuDokter() {
           id='nav-soap'
           onClick={() => handleMenuClick('nav-soap')}
         >
+          <FontAwesomeIcon icon={faNotesMedical} className='mr-1' />
           SOAP
         </Link>
-        <Link 
+        <Link
           href="/dokter/selesai"
           className={
             `p-2 px-4 
@@ -179,6 +189,7 @@ export default function MenuDokter() {
           id='nav-selesai'
           onClick={() => handleMenuClick('nav-selesai')}
         >
+          <FontAwesomeIcon icon={faReceipt} className='mr-1' />
           Selesai
         </Link>
       </div>

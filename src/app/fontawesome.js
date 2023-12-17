@@ -1,4 +1,8 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 
-library.add(fas);
+import dynamic from 'next/dynamic';
+
+const FontAwesomeIcon = dynamic(() =>
+  import('@fortawesome/react-fontawesome').then((module) => module.FontAwesomeIcon),
+  { ssr: false }
+);
+export default FontAwesomeIcon;

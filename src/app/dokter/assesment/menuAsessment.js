@@ -2,6 +2,8 @@
 import React,{ useEffect, useState } from 'react'
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
+import FontAwesomeIcon from '../../fontawesome';
+import { faUserNurse, faUserDoctor } from '@fortawesome/free-solid-svg-icons';
 
 export default function MenuAsessment() {
     const [activeMenu, setActiveMenu] = useState('nav-dok');
@@ -34,6 +36,7 @@ export default function MenuAsessment() {
                 id='nav-dok'
                 onClick={() => handleMenuClick('nav-dok')}
             >
+                <FontAwesomeIcon icon={faUserDoctor} className='mr-1'/>
                 DOKTER
             </Link>
             <Link href="/dokter/assesment/perawat"
@@ -42,6 +45,7 @@ export default function MenuAsessment() {
                 id='nav-per'
                 onClick={() => handleMenuClick('nav-per')}
             >
+                <FontAwesomeIcon icon={faUserNurse} className='mr-1'/>
                 PERAWAT
             </Link>
         </div>
