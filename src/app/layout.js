@@ -1,19 +1,20 @@
-import Link from "next/link";
+import dynamic from 'next/dynamic'
+const MainMenu = dynamic(() => import('./mainMenu')) 
 import './globals.css'
+import '@fortawesome/react-fontawesome'
+import '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/free-brands-svg-icons'
+import '@fortawesome/free-regular-svg-icons'
+import '@fortawesome/free-solid-svg-icons'
 
 
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-
+      <title>APLIKASI SIM RS</title>
       <body>
         <div className="navbar bg-blue-700 text-white">
-          <div className="content flex flex-row space-x-0.5 ml-3 mr-3">
-            <Link href={"/"}> <div className="flex justify-center items-center h-12 bg-sky-800 p-2">Logo</div></Link>
-            <Link href={"/dashboard/riwayat"}><div className="flex justify-center items-center h-12 p-2">Dashboard</div></Link>
-            <Link href={'/dokter'}><div className="flex justify-center items-center h-12 p-2">Dokter</div></Link>
-            <Link href={"/"}><div className="flex justify-center items-center h-12 p-2">Rekam Medik</div></Link>
-          </div>
+          <MainMenu/>
         </div>
         
         <div className="warapper ml-3 mr-3">

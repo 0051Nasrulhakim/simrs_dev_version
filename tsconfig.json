@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/dashboard/assesment/layout.js"  ],
+, "src/app/dokter/assesment/layout.js"  ],
   "exclude": [
     "node_modules"
   ]

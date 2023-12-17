@@ -1,53 +1,50 @@
 "use client"
-
-import React, { useState, useEffect } from 'react'
-import Link from "next/link";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { DataProvider } from './DataContext'
 
-export default function layout({ children }) {
-  const [activeMenu, setActiveMenu] = useState();
+export default function MenuDokter() {
+  const [activeMenu, setActiveMenu] = useState('');
+  const pathname = usePathname();
 
   const handleMenuClick = (menuId) => {
     setActiveMenu(menuId);
   };
 
-  const pathname = usePathname()
-
   useEffect(() => {
     // Update activeMenu based on the current route
     switch (pathname) {
-      case '/dashboard/riwayat':
+      case '/dokter/riwayat':
         setActiveMenu('nav-riwayat');
         break;
-      case '/dashboard/assesment/dokter':
+      case '/dokter/assesment/dokter':
         setActiveMenu('nav-assesment');
         break;
-      case '/dashboard/assesment/perawat':
+      case '/dokter/assesment/perawat':
         setActiveMenu('nav-assesment');
         break;
-      case '/dashboard/penunjang':
+      case '/dokter/penunjang':
         setActiveMenu('nav-penunjang');
         break;
-      case '/dashboard/diagnosa/diagnosa':
+      case '/dokter/diagnosa/diagnosa':
         setActiveMenu('nav-diagnosa');
         break;
-      case '/dashboard/diagnosa/prosedur':
+      case '/dokter/diagnosa/prosedur':
         setActiveMenu('nav-diagnosa');
         break;
-      case '/dashboard/tindakan':
+      case '/dokter/tindakan':
         setActiveMenu('nav-tindakan');
         break;
-      case '/dashboard/resep':
+      case '/dokter/resep':
         setActiveMenu('nav-resep');
         break;
-      case '/dashboard/perencanaan':
+      case '/dokter/perencanaan':
         setActiveMenu('nav-perencanaan');
         break;
-      case '/dashboard/soap':
+      case '/dokter/soap':
         setActiveMenu('nav-soap');
         break;
-      case '/dashboard/selesai':
+      case '/dokter/selesai':
         setActiveMenu('nav-selesai');
         break;
       default:
@@ -58,9 +55,8 @@ export default function layout({ children }) {
   return (
     <div>
       <div className='flex flex-row bg-sky-900 mt-2 text-white'>
-        <Link
-          href="/dashboard/riwayat"
-          prefetch={false}
+      <Link
+          href="/dokter/riwayat"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-riwayat' ?
@@ -74,8 +70,7 @@ export default function layout({ children }) {
           Riwayat
         </Link>
         <Link
-          href="/dashboard/assesment/dokter"
-          prefetch={false}
+          href="/dokter/assesment/dokter"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-assesment' ?
@@ -89,7 +84,7 @@ export default function layout({ children }) {
           Assesment
         </Link>
         <Link 
-          href="/dashboard/penunjang"
+          href="/dokter/penunjang"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-penunjang' ?
@@ -103,7 +98,7 @@ export default function layout({ children }) {
           Penunjang
         </Link>
         <Link 
-          href="/dashboard/diagnosa/diagnosa"
+          href="/dokter/diagnosa/diagnosa"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-diagnosa' ?
@@ -117,7 +112,7 @@ export default function layout({ children }) {
           Diagnosa & Prosedur
         </Link>
         <Link 
-          href="/dashboard/tindakan"
+          href="/dokter/tindakan"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-tindakan' ?
@@ -131,7 +126,7 @@ export default function layout({ children }) {
           Tindakan
         </Link>
         <Link 
-          href="/dashboard/resep"
+          href="/dokter/resep"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-resep' ?
@@ -145,7 +140,7 @@ export default function layout({ children }) {
           Resep
         </Link>
         <Link 
-          href="/dashboard/perencanaan"
+          href="/dokter/perencanaan"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-perencanaan' ?
@@ -159,7 +154,7 @@ export default function layout({ children }) {
           Perencanaan
         </Link>
         <Link 
-          href="/dashboard/soap"
+          href="/dokter/soap"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-soap' ?
@@ -173,7 +168,7 @@ export default function layout({ children }) {
           SOAP
         </Link>
         <Link 
-          href="/dashboard/selesai"
+          href="/dokter/selesai"
           className={
             `p-2 px-4 
             ${activeMenu === 'nav-selesai' ?
@@ -187,10 +182,6 @@ export default function layout({ children }) {
           Selesai
         </Link>
       </div>
-      <DataProvider>
-        {children}
-      </DataProvider>
     </div>
-  )
+  );
 }
-

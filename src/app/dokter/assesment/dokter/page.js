@@ -1,8 +1,6 @@
 "use client"
-
 import React, { useState, useEffect } from 'react'
 import { UseDataContext } from '../../DataContext';
-
 
 export default function Page() {
 
@@ -23,6 +21,7 @@ export default function Page() {
         { label: 'Delirium', value: 'Delirium' },
         { label: 'Somnolen', value: 'Somnolen' },
     ]
+    
     const handleOptionChange = (event) => {
         const value = event.target.value;
         setSelectedOption(value);
@@ -131,7 +130,7 @@ export default function Page() {
     return (
         <div className='my-3'>
             <div className='ml-[1.5%] mr-[1.5%]'>
-                <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900 text-center">ANAMNESA DOKTER</label>
+                <label htmlFor="valueAnamnesa" className="block text-sm font-medium leading-6 text-gray-900 text-center">ANAMNESA DOKTER</label>
                 <textarea
                     className='border w-full h-32 rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300'
                     id="valueAnamnesa"
@@ -159,10 +158,10 @@ export default function Page() {
                         </div>
                     </div>
                     <div className='mt-4'>
-                        <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">Tinggi Badan</label>
+                        <label htmlFor="tinggi_badan" className="block text-sm font-medium leading-6 text-gray-900">Tinggi Badan</label>
                         <div className="relative mt-1 rounded-md shadow-sm">
                             <div className="absolute inset-y-0 right-0 flex items-center">
-                                <label htmlFor="" className="sr-only">Tinggi Badan</label>
+                                <label htmlFor="tinggi_badan" className="sr-only">Tinggi Badan</label>
                                 <select id="" className="h-full rounded-br-md rounded-tr-md border-0 bg-black py-0 pl-3 pr-2 text-white bg-black focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                                     disabled={true}
                                     style={{
@@ -192,10 +191,10 @@ export default function Page() {
                     </div>
 
                     <div className='mt-3'>
-                        <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">Nadi</label>
+                        <label htmlFor="nadi" className="block text-sm font-medium leading-6 text-gray-900">Nadi</label>
                         <div className="relative mt-1 rounded-md shadow-sm">
                             <div className="absolute inset-y-0 right-0 flex items-center">
-                                <label htmlFor="" className="sr-only">Nadi</label>
+                                <label htmlFor="nadi" className="sr-only">Nadi</label>
                                 <select id="" className="h-full rounded-br-md rounded-tr-md border-0 bg-black py-0 pl-3 pr-2 text-white bg-black focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                                     disabled={true}
                                     style={{
@@ -225,10 +224,10 @@ export default function Page() {
                     </div>
 
                     <div className='mt-3'>
-                        <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">Suhu Tubuh</label>
+                        <label htmlFor="suhu_tubuh" className="block text-sm font-medium leading-6 text-gray-900">Suhu Tubuh</label>
                         <div className="relative mt-1 rounded-md shadow-sm">
                             <div className="absolute inset-y-0 right-0 flex items-center">
-                                <label htmlFor="" className="sr-only">Suhu Tubuh</label>
+                                <label htmlFor="suhu_tubuh" className="sr-only">Suhu Tubuh</label>
                                 <select id="" className="h-full rounded-br-md rounded-tr-md border-0 bg-black py-0 pl-3 pr-2 text-white bg-black focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                                     disabled={true}
                                     style={{
@@ -262,7 +261,7 @@ export default function Page() {
 
                 <div className='w-[46.5%]'>
                     <div className='mt-4'>
-                        <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">Kesadaran Umum</label>
+                        <label className="block text-sm font-medium leading-6 text-gray-900">Kesadaran Umum</label>
                         <div className="relative rounded-md shadow-sm">
                             <div className="space-y-2">
                                 {options.map((option) => (
@@ -282,10 +281,10 @@ export default function Page() {
                     </div>
 
                     <div className='mt-6'>
-                        <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">Berat Badan</label>
+                        <label htmlFor="berat_badan" className="block text-sm font-medium leading-6 text-gray-900">Berat Badan</label>
                         <div className="relative mt-1 rounded-md shadow-sm">
                             <div className="absolute inset-y-0 right-0 flex items-center">
-                                <label htmlFor="" className="sr-only">Berat Badan</label>
+                                <label htmlFor="berat_badan" className="sr-only">Berat Badan</label>
                                 <select id="" className="h-full rounded-br-md rounded-tr-md border-0 bg-black py-0 pl-3 pr-2 text-white bg-black focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                                     disabled={true}
                                     style={{
@@ -316,7 +315,7 @@ export default function Page() {
                     </div>
 
                     <div className='mt-3'>
-                        <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">Tekanan Darah</label>
+                        <label htmlFor="tekanan_darah_atas" className="block text-sm font-medium leading-6 text-gray-900">Tekanan Darah</label>
                         <div className='flex'>
                             <div className="relative mt-1 w-[50%] rounded-md shadow-sm">
                                 <div className="absolute inset-y-0 right-0 flex items-center">
@@ -349,7 +348,7 @@ export default function Page() {
                             </div>
                             <div className="relative mt-1 w-[50%] rounded-md shadow-sm">
                                 <div className="absolute inset-y-0 right-0 flex items-center">
-                                    <select id="" className="h-full rounded-br-md rounded-tr-md border-0 bg-black py-0 pl-3 pr-2 text-white bg-black focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+                                    <select className="h-full rounded-br-md rounded-tr-md border-0 bg-black py-0 pl-3 pr-2 text-white bg-black focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                                         disabled={true}
                                         style={{
                                             appearance: 'none',

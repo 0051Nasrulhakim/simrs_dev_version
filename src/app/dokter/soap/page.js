@@ -8,6 +8,10 @@ export default function page() {
     const [skunderDiagnosa, setDiagnosaSkunder] = useState([]);
     const [valAreaObjective, setAreaObjective] = useState('');
     const [valAreaSubjective, setAreaSubjective] = useState('');
+    const [valAreaAsessment, setAreaAsessment] = useState('');
+
+    const [valResep, setResep] = useState();
+    const [valPlanning, setPlanning] = useState();
 
     const [valAreaUtama, setAreaUtama] = useState('');
     const [valAreaSkunder, setAreaSkunder] = useState('');
@@ -42,9 +46,29 @@ export default function page() {
         setDiagnosaUtama(mainResult);
         setDiagnosaSkunder(skunderResult);
 
+
     }, [diagnosa]);
 
     useEffect(() => {
+        
+        const stringifyResep = (resepArray) => {
+            return resepArray.map((item, index)=>{
+                return `${index + 1}. ${item.nama_obat} ${item.aturan_minum}`
+            }).join('\n')
+        }
+
+        if(resep.length > 0){
+            const newresep = stringifyResep(resep);
+            setResep(newresep);
+        }
+        console.log(valResep);
+
+        if(valResep) {
+            let formatresep = `Pemberian Obat : \n${valResep} \n\n`
+            setPlanning(formatresep);
+
+        }
+
         // untuk membuat string pada text area asessment yang valuenya di ambil dari array diagnosa
         const stringifyDiagnosa = (diagnosaArray) => {
             return diagnosaArray.map((item) => {
@@ -86,11 +110,21 @@ export default function page() {
             }
             return result;
         };
+
         setAreaObjective(formattedObjective());
-
         setAreaSubjective(assesmentDokter.anamnesa)
+        let utamaSkunder = valAreaUtama + valAreaSkunder
+        setAreaAsessment(utamaSkunder)
 
-    }, [mainDiagnosa, skunderDiagnosa, assesmentDokter])
+    }, [
+        mainDiagnosa, 
+        skunderDiagnosa, 
+        assesmentDokter, 
+        valAreaUtama, 
+        valAreaSkunder, 
+        resep,
+        valResep
+    ])
 
     const changeSubjective = (event) => {
         const newValue = event.target.value;
@@ -108,7 +142,19 @@ export default function page() {
         //     tinggi_badan: newValue,
         // }));
     };
-    
+    const changeAsessment = (event) => {
+        const newValue = event.target.value;
+        setAreaAsessment(newValue);
+        // DataAssesmentDokter((prevData) => ({
+        //     ...prevData,
+        //     tinggi_badan: newValue,
+        // }));
+    };
+
+    const changePlanning = (event) => {
+        const newValue = event.target.value;
+        setPlanning(newValue);
+    }
 
     return (
         <div className='border mt-[-0.6%] border-t-1 border-sky-900'>
@@ -170,7 +216,11 @@ export default function page() {
                             <textarea
                                 className='border w-full h-32 rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 mt-1 mb-[-1.5%] h-[280px]'
                                 id='asessment'
-                                defaultValue={valAreaUtama + valAreaSkunder}
+                                value={valAreaAsessment}
+                                // defaultValue={valAreaUtama + valAreaSkunder}
+                                onChange={
+                                    changeAsessment
+                                }
                             >
                             </textarea>
                         </div>
@@ -186,6 +236,12 @@ export default function page() {
                         </div>
                         <div>
                             <textarea
+                                value={
+                                    valPlanning
+                                }
+                                onChange={
+                                    changePlanning
+                                }
                                 className='border w-full h-32 rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 mt-1 mb-[-1.5%] h-[280px]'
                                 id='planning'
                             />

@@ -1,8 +1,8 @@
-export default function Loading() {
+export default function LoadingDashboard() {
     // You can add any UI inside Loading, including a Skeleton.
     return (
         <>
-        SEDANG MEMUAT HALAMAN....
+        Sedang Memuat Halaman....
         </>
     )
 }
