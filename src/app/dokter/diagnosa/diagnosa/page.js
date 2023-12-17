@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { UseDataContext } from '../../DataContext';
+import FontAwesomeIcon from '../../../fontawesome';
+import { faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 export default function Page() {
   const { diagnosa, DataDiagnosa } = UseDataContext();
@@ -168,7 +170,7 @@ export default function Page() {
             onClick={saveDiagnosa}
             type="button"
             className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">
-            Simpan
+            <FontAwesomeIcon icon={faPlus} className='mr-1'/>Tambahkan
           </button>
         </div>
       </form>
@@ -200,10 +202,10 @@ export default function Page() {
                   <td className='p-2 border-r-2 border-gray-800'>{item.jenis_kasus_diagnosa_skunder}</td>
                   <td className='p-2 flex items-center justify-center'>
                     <button
-                      className="bg-red-500 text-white py-1 px-2 rounded-full flex items-center justify-center hover:bg-red-700 transition duration-300 ease-in-out"
+                      className="bg-red-500 text-white py-1 px-2 h-10 w-10 rounded-full flex items-center justify-center hover:bg-red-700 transition duration-300 ease-in-out"
                       onClick={() => handleDeleteItem(index)} // Panggil fungsi dengan indeks sebagai parameter
                     >
-                      <i className="fas fa-trash mr-1"></i> -
+                      <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                   </td>
                 </tr>
