@@ -6,8 +6,6 @@ import { UseDataContext } from '../DataContext';
 import FontAwesomeIcon from '../../fontawesome';
 import { faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
-
-
 export default function Page() {
 
   let [valueJenisObat, setJenisObat] = useState('');

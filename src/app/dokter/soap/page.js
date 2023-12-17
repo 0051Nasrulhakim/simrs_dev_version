@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { UseDataContext } from '../DataContext';
 
 export default function Page() {
-    const { resep, assesmentDokter, diagnosa } = UseDataContext();
+    const { resep, assesmentDokter, diagnosa, perencanaan } = UseDataContext();
     const [mainDiagnosa, setDiagnosaUtama] = useState([]);
     const [skunderDiagnosa, setDiagnosaSkunder] = useState([]);
     const [valAreaObjective, setAreaObjective] = useState('');
@@ -12,6 +12,8 @@ export default function Page() {
 
     const [valResep, setResep] = useState();
     const [valPlanning, setPlanning] = useState();
+    const [valPlanningResep, setPlanningResep] = useState();
+    const [valPlanningKunjungan, setPlanningKunjungan] = useState();
 
     const [valAreaUtama, setAreaUtama] = useState('');
     const [valAreaSkunder, setAreaSkunder] = useState('');
@@ -50,6 +52,7 @@ export default function Page() {
     }, [diagnosa]);
 
     useEffect(() => {
+        let newPlaning = '';
         
         const stringifyResep = (resepArray) => {
             return resepArray.map((item, index)=>{
@@ -61,12 +64,34 @@ export default function Page() {
             const newresep = stringifyResep(resep);
             setResep(newresep);
         }
-        console.log(valResep);
+
 
         if(valResep) {
+            let templatenewResep = ''
             let formatresep = `Pemberian Obat : \n${valResep} \n\n`
+            
+            if(valPlanningKunjungan){
+                templatenewResep = formatresep+valPlanningKunjungan
+                setPlanningResep(formatresep);
+            }else{
+                templatenewResep = formatresep
+                setPlanningResep(formatresep);
+            }
             setPlanning(formatresep);
+        }
 
+        if(perencanaan.is_kunjungan_ulang == true){
+            const jadwal_kunjungan_ulang = `Dijadwalkan Kunjungan Ulang pada : \n${perencanaan.hari_kunjungan_ulang} ${perencanaan.tanggal_Kunjungan_ulang}`
+           
+            if(valPlanningResep){
+                newPlaning = valPlanningResep+jadwal_kunjungan_ulang
+                setPlanningKunjungan(jadwal_kunjungan_ulang)
+            }else{
+                newPlaning = jadwal_kunjungan_ulang
+                setPlanningKunjungan(newPlaning)
+            }
+
+            setPlanning(newPlaning);
         }
 
         // untuk membuat string pada text area asessment yang valuenya di ambil dari array diagnosa
@@ -123,7 +148,11 @@ export default function Page() {
         valAreaUtama, 
         valAreaSkunder, 
         resep,
-        valResep
+        valResep,
+        perencanaan,
+        valPlanning,
+        valPlanningResep,
+        valPlanningKunjungan
     ])
 
     const changeSubjective = (event) => {

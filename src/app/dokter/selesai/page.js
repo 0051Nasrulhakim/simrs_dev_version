@@ -5,7 +5,8 @@ import { UseDataContext } from '../DataContext';
 
 const Page = () => {
   // Menggunakan UseDataContext untuk mengakses data dari konteks
-  const { resep, assesmentDokter } = UseDataContext();
+  const { resep, assesmentDokter, perencanaan } = UseDataContext();
+  
 
   // Tampilkan data resep dan assessmentDokter
   return (
@@ -24,6 +25,10 @@ const Page = () => {
 
       <h2>Data Assessment Dokter</h2>
       <ul>
+        <li>
+          Kunjungan Ulang :
+          {perencanaan.is_kunjungan_ulang}
+        </li>
         <li>
           Anamnesa :
           {assesmentDokter.anamnesa}
@@ -50,6 +55,10 @@ const Page = () => {
         </li>
         <li>
           Berat Badan :
+          {assesmentDokter.berat_badan}
+        </li>
+        <li>
+          Kunjungan ulang :
           {assesmentDokter.berat_badan}
         </li>
         <li>
