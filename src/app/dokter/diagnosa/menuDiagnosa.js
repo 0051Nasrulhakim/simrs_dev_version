@@ -6,13 +6,12 @@ import FontAwesomeIcon from '../../fontawesome';
 import { faStethoscope, faBookMedical } from '@fortawesome/free-solid-svg-icons';
 
 export default function menuDiagnosa() {
-    const [activeMenu, setActiveMenu] = useState();
+    const [activeMenu, setActiveMenu] = useState('nav-diagnosa');
 
     const handleMenuClick = (menuId) => {
         console.log(menuId);
         setActiveMenu(menuId);
     };
-
     const pathname = usePathname()
 
     useEffect(() => {
@@ -36,7 +35,7 @@ export default function menuDiagnosa() {
                 id='nav-dok'
                 onClick={() => handleMenuClick('nav-diagnosa')}
             >
-                <FontAwesomeIcon icon={faStethoscope} className='mr-1' />
+                <FontAwesomeIcon icon={faStethoscope} className='mr-1'/>
                 DIAGNOSA
             </Link>
             <Link href="/dokter/diagnosa/prosedur"
@@ -45,7 +44,7 @@ export default function menuDiagnosa() {
                 id='nav-per'
                 onClick={() => handleMenuClick('nav-prosedur')}
             >
-                <FontAwesomeIcon icon={faBookMedical} className='mr-1' />
+                <FontAwesomeIcon icon={faBookMedical} className='mr-1'/>
                 PROSEDUR
             </Link>
         </div>
