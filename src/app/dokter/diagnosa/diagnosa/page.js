@@ -26,7 +26,6 @@ export default function Page() {
   ];
 
   const handleInputChange = (inputValue, setOption, setInput, setTextarea) => {
-
     setInput(inputValue);
     if (inputValue.trim() !== '') {
       fetch(`https://jsonplaceholder.typicode.com/users?name_like=${inputValue}`)
