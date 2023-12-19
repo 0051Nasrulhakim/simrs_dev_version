@@ -14,9 +14,9 @@ export default function Page() {
   const [valueBerapaKali, setBerapaKali] = useState('');
   const [valueWaktuMinum, setWaktuMinum] = useState('');
   const [valueKondisi, setKondisi] = useState('');
-  const [valueKeteranganTambahan, setKeteranganTambahan] = useState();
-  const [valueInstruksiApt, setInstruksiApt] = useState();
-  const [valueJumlah, setJumlah] = useState();
+  const [valueKeteranganTambahan, setKeteranganTambahan] = useState('');
+  const [valueInstruksiApt, setInstruksiApt] = useState('');
+  const [valueJumlah, setJumlah] = useState('');
   let aturanPakai = valueWaktuMinum
     ? `${valueBerapaKali} ( ${valueWaktuMinum} ) `
     : valueBerapaKali;
