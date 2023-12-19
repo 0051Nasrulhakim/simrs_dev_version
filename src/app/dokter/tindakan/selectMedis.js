@@ -2,8 +2,8 @@
 import React, { useState } from 'react'
 import Select from 'react-select';
 
-export default function SelectMedis() {
-    const [daftarMedis, setDaftarMedis] = useState([])
+const SelectMedis = ({daftarMedis, setDaftarMedis}) => {
+
     const [valParamedis, setValParamedis] = useState([])
     const [options, setOptions] = useState([])
 
@@ -75,3 +75,5 @@ export default function SelectMedis() {
         </div>
     )
 }
+
+export default SelectMedis;

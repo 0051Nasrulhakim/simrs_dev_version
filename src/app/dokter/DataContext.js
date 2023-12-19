@@ -9,6 +9,7 @@ export const DataProvider = ({ children }) => {
   const [assesmentDokter, SetAsessmentDokter] = useState([]);
   const [diagnosa, setDiagnosa] = useState([]);
   const [perencanaan, setPerencanaan] = useState([]);
+  const [tindakan, setTindakan] = useState([]);
 
   const DataResep = newResep => {
     SetResep(newResep);
@@ -26,12 +27,17 @@ export const DataProvider = ({ children }) => {
     setPerencanaan(newPerencanaan);
   }
 
+  const DataTindakan = newTindakan => {
+    setTindakan(newTindakan)
+  }
+
   return (
     <DataContext.Provider value={{
       resep, DataResep,
       assesmentDokter, DataAssesmentDokter,
       diagnosa, DataDiagnosa,
-      perencanaan, DataPerencanaan
+      perencanaan, DataPerencanaan,
+      tindakan, DataTindakan
     }}>
       {children}
     </DataContext.Provider>
