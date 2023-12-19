@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
           <MainMenu/>
         </div>
         
-        <div className="warapper px-5">
+        <div className="warapper px-[1%]">
           <div className="data_pasien mt-1 bg-slate-300 p-2 w-3/5">
             <div className="text-2xl font-bold"> 
               Nasrul Hakim
