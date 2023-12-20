@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
             </div>
             <div className="flex flex-row">
               <div className="w-28 text-sm"> Alamat</div>
-              <div className="text-sm">: Wonoyoso gg. 5 Buaran pekalongan jawa tengah jajaj</div>
+              <div className="w-60 text-sm">: Wonoyoso gg. 5 Buaran pekalongan jawa tengah jajaj</div>
             </div>
           </div>
           {children}
