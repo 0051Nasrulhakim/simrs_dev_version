@@ -3,17 +3,22 @@ import React, { useState, useEffect } from 'react'
 import { UseDataContext } from '../DataContext';
 
 export default function Page() {
-    const { resep, assesmentDokter, diagnosa, perencanaan } = UseDataContext();
+    const { resep, assesmentDokter, diagnosa, perencanaan, tindakan } = UseDataContext();
     const [mainDiagnosa, setDiagnosaUtama] = useState([]);
     const [skunderDiagnosa, setDiagnosaSkunder] = useState([]);
-    const [valAreaObjective, setAreaObjective] = useState('');
+    
     const [valAreaSubjective, setAreaSubjective] = useState('');
+    const [valAreaObjective, setAreaObjective] = useState('');
     const [valAreaAsessment, setAreaAsessment] = useState('');
+    const [valPlanning, setPlanning] = useState('');
+    // const [valAreaPlanning, setAreaPlanning] = useState('');
 
+    const [valTindakan, setTindakan] = useState();
     const [valResep, setResep] = useState();
-    const [valPlanning, setPlanning] = useState();
+
     const [valPlanningResep, setPlanningResep] = useState();
     const [valPlanningKunjungan, setPlanningKunjungan] = useState();
+    const [valPlanningTindakan, setPlanningTindakan] = useState();
 
     const [valAreaUtama, setAreaUtama] = useState('');
     const [valAreaSkunder, setAreaSkunder] = useState('');
@@ -52,47 +57,57 @@ export default function Page() {
     }, [diagnosa]);
 
     useEffect(() => {
-        let newPlaning = '';
-        
         const stringifyResep = (resepArray) => {
             return resepArray.map((item, index)=>{
                 return `${index + 1}. ${item.nama_obat} ${item.aturan_minum}`
             }).join('\n')
         }
-
-        if(resep.length > 0){
-            const newresep = stringifyResep(resep);
-            setResep(newresep);
+        
+        const stringifyTindakan = (tindakan) => {
+            return tindakan.map((item, index)=>{
+                return `${index + 1}. ${item.nama_tindakan}`
+            }).join('\n')
         }
 
+        if(resep.length > 0){
+            setResep(stringifyResep(resep));
+        }
+
+        if(tindakan.length > 0){
+            setTindakan(stringifyTindakan(tindakan))
+        }
 
         if(valResep) {
-            let templatenewResep = ''
-            let formatresep = `Pemberian Obat : \n${valResep} \n\n`
-            
-            if(valPlanningKunjungan){
-                templatenewResep = formatresep+valPlanningKunjungan
-                setPlanningResep(formatresep);
-            }else{
-                templatenewResep = formatresep
-                setPlanningResep(formatresep);
-            }
-            setPlanning(formatresep);
+            setPlanningResep(`Pemberian Obat : \n${valResep} \n\n`)
+        }
+
+        if(valTindakan) {
+            setPlanningTindakan(`Tindakan Yang Dilakukan : \n${valTindakan} \n\n`)
         }
 
         if(perencanaan.is_kunjungan_ulang == true){
-            const jadwal_kunjungan_ulang = `Dijadwalkan Kunjungan Ulang pada : \n${perencanaan.hari_kunjungan_ulang} ${perencanaan.tanggal_Kunjungan_ulang}`
-           
-            if(valPlanningResep){
-                newPlaning = valPlanningResep+jadwal_kunjungan_ulang
-                setPlanningKunjungan(jadwal_kunjungan_ulang)
-            }else{
-                newPlaning = jadwal_kunjungan_ulang
-                setPlanningKunjungan(newPlaning)
-            }
-
-            setPlanning(newPlaning);
+            setPlanningKunjungan(`Dijadwalkan Kunjungan Ulang pada : \n${perencanaan.hari_kunjungan_ulang} ${perencanaan.tanggal_Kunjungan_ulang} \n\n`);
         }
+
+        const updatePlanning = () => {
+            let temp_newPlaning = '';
+            if(valPlanningResep && valPlanningKunjungan && valPlanningTindakan){
+                temp_newPlaning = valPlanningResep+valPlanningKunjungan+valPlanningTindakan
+                setPlanning(temp_newPlaning)
+            }else if(!valPlanningResep){
+                temp_newPlaning = (valPlanningKunjungan || '')+(valPlanningTindakan || '')
+                setPlanning(temp_newPlaning)
+            }else if(!valPlanningKunjungan){
+                temp_newPlaning = (valPlanningResep || '')+(valPlanningTindakan || '')
+                setPlanning(temp_newPlaning)
+            }else if(!valPlanningTindakan){
+                temp_newPlaning = (valPlanningResep || '')+(valPlanningKunjungan || '')
+                setPlanning(temp_newPlaning)
+            }else{
+                temp_newPlaning = ''
+                setPlanning('')
+            }
+        }    
 
         // untuk membuat string pada text area asessment yang valuenya di ambil dari array diagnosa
         const stringifyDiagnosa = (diagnosaArray) => {
@@ -140,6 +155,7 @@ export default function Page() {
         setAreaSubjective(assesmentDokter.anamnesa)
         let utamaSkunder = valAreaUtama + valAreaSkunder
         setAreaAsessment(utamaSkunder)
+        updatePlanning();
 
     }, [
         mainDiagnosa, 
@@ -149,10 +165,11 @@ export default function Page() {
         valAreaSkunder, 
         resep,
         valResep,
+        valTindakan,
         perencanaan,
-        valPlanning,
         valPlanningResep,
-        valPlanningKunjungan
+        valPlanningKunjungan,
+        tindakan
     ])
 
     const changeSubjective = (event) => {
@@ -268,7 +285,7 @@ export default function Page() {
                                 value={
                                     valPlanning
                                 }
-                                onChange={
+                                onChange={ 
                                     changePlanning
                                 }
                                 className='border w-full h-32 rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 mt-1 mb-[-1.5%] h-[280px]'
