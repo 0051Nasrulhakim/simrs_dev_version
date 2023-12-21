@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { dropBerapaKali, dropWaktuMinum, dropKondisi, dropJenisObat } from './Handling'
 import { UseDataContext } from '../DataContext';
-import FontAwesomeIcon from '../../fontawesome';
+import FontAwesomeIcon from '../../../fontawesome';
 import { faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 export default function Page() {

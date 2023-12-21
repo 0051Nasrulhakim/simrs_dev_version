@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { UseDataContext } from '../../DataContext';
-import FontAwesomeIcon from '../../../fontawesome';
+import FontAwesomeIcon from '../../../../fontawesome';
 import { faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 export default function Page() {

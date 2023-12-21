@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import SelectMedis from './selectMedis'
-import FontAwesomeIcon from '../../fontawesome';
+import FontAwesomeIcon from '../../../fontawesome';
 import { UseDataContext } from '../DataContext';
 import { faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 

@@ -1,7 +1,10 @@
 import React from 'react'
 
-export default function page() {
+
+export default function Page( {params}) {
   return (
-    <div>Ini Adalah Halaman Dokter</div>
+    <div>
+      return <div>My Post: {params.idPasien}</div>
+    </div>
   )
 }
