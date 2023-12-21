@@ -9,7 +9,6 @@ export default function MenuAsessment() {
     const [activeMenu, setActiveMenu] = useState('nav-dok');
     const pathname = usePathname();
     const params = useParams();
-    const path1 = 'dokter'
 
     const handleMenuClick = (menuId) => {
         setActiveMenu(menuId);
@@ -18,10 +17,10 @@ export default function MenuAsessment() {
     useEffect(() => {
         
         switch (pathname) {
-            case `/${path1}/${params.idPasien}/assesment/${path1}`:
+            case `/dokter/${params.idPasien}/assesment/dokter`:
                 setActiveMenu('nav-dok');
                 break;
-            case `/${path1}}/${params.idPasien}/assesment/perawat`:
+            case `/dokter/${params.idPasien}/assesment/perawat`:
                 setActiveMenu('nav-per');
                 break;
             default:
