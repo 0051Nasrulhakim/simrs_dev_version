@@ -16,7 +16,7 @@ export default function MenuAsessment() {
     };
 
     useEffect(() => {
-        // Update activeMenu based on the current route
+        
         switch (pathname) {
             case `/${path1}/${params.idPasien}/assesment/${path1}`:
                 setActiveMenu('nav-dok');
