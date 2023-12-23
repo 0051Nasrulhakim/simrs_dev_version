@@ -163,13 +163,14 @@ export default function Page() {
         assesmentDokter, 
         valAreaUtama, 
         valAreaSkunder, 
-        resep,
-        valResep,
-        valTindakan,
-        perencanaan,
-        valPlanningResep,
-        valPlanningKunjungan,
-        tindakan
+        resep, 
+        valResep, 
+        valTindakan, 
+        perencanaan, 
+        valPlanningResep, 
+        valPlanningKunjungan, 
+        tindakan, 
+        valPlanningTindakan
     ])
 
     const changeSubjective = (event) => {
