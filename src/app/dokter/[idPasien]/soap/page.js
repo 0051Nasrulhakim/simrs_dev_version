@@ -18,7 +18,7 @@ export default function Page() {
 
     const [valPlanningResep, setPlanningResep] = useState();
     const [valPlanningKunjungan, setPlanningKunjungan] = useState();
-    const [valPlanningTindakan, setPlanningTindakan] = useState();
+    const [valPlanningTindakan, setPlanningTindakan] = useState(null);
 
     const [valAreaUtama, setAreaUtama] = useState('');
     const [valAreaSkunder, setAreaSkunder] = useState('');
