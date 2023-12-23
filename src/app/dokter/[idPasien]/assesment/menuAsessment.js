@@ -26,7 +26,7 @@ export default function MenuAsessment() {
             default:
                 setActiveMenu('nav-dok');
         }
-    }, [pathname]);
+    }, [params.idPasien, pathname]);
 
     return (
         <div className='flex justify-center mt-[2.5%]'>
