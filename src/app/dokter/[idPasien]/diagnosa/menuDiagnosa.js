@@ -25,7 +25,7 @@ const MenuDiagnosa = () => {
                 setActiveMenu('nav-prosedur');
                 break;
         }
-    }, [pathname]);
+    }, [params.idPasien, pathname]);
 
 
     return (
