@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react'
 
-export default function TabelDashDokter() {
+export default function KeseluruhanPasien() {
   const [customers, setCustomers] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
 
