@@ -56,7 +56,7 @@ export default function MenuDokter() {
       default:
         setActiveMenu('nav-riwayat');
     }
-  }, [pathname]);
+  }, [params.idPasien, pathname]);
 
   return (
     <div>
