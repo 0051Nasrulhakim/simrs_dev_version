@@ -34,7 +34,7 @@ export default function AntrianPoli() {
                             <td className='px-4 py-2 border-b border-gray-400'>Jl. Nusakambangan No.5 Buaran Pekalongan</td>
                             <td className='px-4 py-2 border-b border-gray-400 text-center'>
                                 <button
-                                    className="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-700 transition duration-300 ease-in-out"
+                                    className="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-700 transition duration-300 ease-in-out"
                                     onClick={notReady}
                                 >
                                     <div className='flex'>
