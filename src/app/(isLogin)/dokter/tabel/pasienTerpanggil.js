@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import FontAwesomeIcon from '../../fontawesome';
+import FontAwesomeIcon from '../../../fontawesome';
 import { faFolderOpen, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link'
 

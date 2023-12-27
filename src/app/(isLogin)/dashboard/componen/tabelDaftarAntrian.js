@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
-import FontAwesomeIcon from '../../fontawesome';
-import { faPlus, faPhoneVolume } from '@fortawesome/free-solid-svg-icons';
+import FontAwesomeIcon from '../../../fontawesome';
+import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function TabelDaftarAntrian() {
@@ -20,7 +20,7 @@ export default function TabelDaftarAntrian() {
                 </thead>
                 <tbody>
                     <tr className='hover:bg-gray-200'>
-                        <td className='px-4 py-2 border-b border-gray-400 text-center'>A 250</td>
+                        <td className='px-4 py-2 border-b border-gray-400 text-center font-bold'>A 250</td>
                         <td className='px-4 py-2 border-b border-gray-400 text-center'>
                             <button
                                 className="bg-green-700 text-white py-1 px-2 rounded-md hover:bg-green-800 transition duration-300 ease-in-out"
@@ -38,7 +38,7 @@ export default function TabelDaftarAntrian() {
                         </td>
                     </tr>
                     <tr className='hover:bg-gray-200'>
-                        <td className='px-4 py-2 border-b border-gray-400 text-center'>A 251</td>
+                        <td className='px-4 py-2 border-b border-gray-400 text-center font-bold'>A 251</td>
                         <td className='px-4 py-2 border-b border-gray-400 text-center'>
                             <button
                                 className="bg-green-700 text-white py-1 px-2 rounded-md hover:bg-green-800 transition duration-300 ease-in-out"
@@ -56,7 +56,7 @@ export default function TabelDaftarAntrian() {
                         </td>
                     </tr>
                     <tr className='hover:bg-gray-200'>
-                        <td className='px-4 py-2 border-b border-gray-400 text-center'>A 251</td>
+                        <td className='px-4 py-2 border-b border-gray-400 text-center font-bold'>A 251</td>
                         <td className='px-4 py-2 border-b border-gray-400 text-center'>
                             <button
                                 className="bg-green-700 text-white py-1 px-2 rounded-md hover:bg-green-800 transition duration-300 ease-in-out"

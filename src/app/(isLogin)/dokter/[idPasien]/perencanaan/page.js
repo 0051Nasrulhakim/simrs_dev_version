@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import FontAwesomeIcon from '../../../fontawesome';
+import FontAwesomeIcon from '../../../../fontawesome';
 import { faCheck, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { UseDataContext } from '../DataContext';
 

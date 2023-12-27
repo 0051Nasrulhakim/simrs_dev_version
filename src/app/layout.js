@@ -1,5 +1,4 @@
-import dynamic from 'next/dynamic'
-const MainMenu = dynamic(() => import('./mainMenu')) 
+// import dynamic from 'next/dynamic'
 import './globals.css'
 import '@fortawesome/react-fontawesome'
 import '@fortawesome/fontawesome-svg-core'
@@ -14,10 +13,10 @@ export default function RootLayout({ children }) {
       <title>APLIKASI SIM RS</title>
       <body>
         <div className="navbar bg-blue-700 text-white">
-          <MainMenu/>
+          
         </div>
         
-        <div className="warapper px-[1%]">
+        <div className="">
           {children}
         </div>
 

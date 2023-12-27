@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import FontAwesomeIcon from '../../fontawesome';
+import FontAwesomeIcon from '../../../fontawesome';
 import { faPlus, faPhoneVolume } from '@fortawesome/free-solid-svg-icons';
 
 export default function AntrianPoli() {

@@ -2,7 +2,7 @@
 import React,{ useEffect, useState } from 'react'
 import Link from "next/link";
 import { usePathname, useParams } from 'next/navigation';
-import FontAwesomeIcon from '../../../fontawesome';
+import FontAwesomeIcon from '../../../../fontawesome';
 import { faUserNurse, faUserDoctor } from '@fortawesome/free-solid-svg-icons';
 
 export default function MenuAsessment() {

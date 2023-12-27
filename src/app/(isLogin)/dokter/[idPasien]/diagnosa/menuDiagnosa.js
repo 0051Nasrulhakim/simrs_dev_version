@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from "next/link";
 import { usePathname, useParams } from 'next/navigation';
-import FontAwesomeIcon from '../../../fontawesome';
+import FontAwesomeIcon from '../../../../fontawesome';
 import { faStethoscope, faBookMedical } from '@fortawesome/free-solid-svg-icons';
 
 const MenuDiagnosa = () => {
