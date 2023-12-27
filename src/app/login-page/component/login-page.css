@@ -1,0 +1,14 @@
+.set-bg{
+    background-image: url('/bg-login-type-a.jpg');
+    background-size: cover;
+    background-position: center center; 
+}
+
+.bg-blur {
+    backdrop-filter: blur(6px); 
+    background-color: rgba(192, 192, 192, 0.596); 
+  }
+.bg-blur-2 {
+    backdrop-filter: blur(10px); 
+    background-color: rgba(192, 192, 192, 0.596); 
+  }
