@@ -1,18 +1,21 @@
 "use client"
 import React from 'react'
 import FontAwesomeIcon from '../../../fontawesome';
-import { faUserPen, faUserPlus, faMagnifyingGlass, faBedPulse, faRightLeft} from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link'
+import { faUserPen, faUserPlus, faMagnifyingGlass, faBedPulse, faRightLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function MenuDashboard() {
     return (
         <>
             <div className='w-[15.43%] bg-green-600 rounded-md text-center text-wrap p-3 m-2 hover:bg-green-800	'>
-                <div className='text-white'>
-                    <FontAwesomeIcon icon={faUserPlus} size='xl' />
-                </div>
-                <div className='font-bold text-white'>
-                    Input Pasien Baru
-                </div>
+                <Link href='./pelayanan/inputPasien'>
+                    <div className='text-white'>
+                        <FontAwesomeIcon icon={faUserPlus} size='xl' />
+                    </div>
+                    <div className='font-bold text-white'>
+                        Input Pasien Baru
+                    </div>
+                </Link>
             </div>
             <div className='w-[15.43%] bg-yellow-600 hover:bg-yellow-800 rounded-md text-center text-wrap p-3 m-2 '>
                 <div className='text-white'>

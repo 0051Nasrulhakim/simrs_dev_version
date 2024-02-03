@@ -9,18 +9,8 @@ const DisplayAntrian = dynamic(() => import('./componen/displayAntrian'))
 export default function Page() {
   return (
     <div className='mb-[2%]'>
+      
       <div>
-        <div className='text-right mt-2 mb-3 mr-3'>
-          <div className="">
-            Selamat Datang..
-          </div>
-          <div className='font-bold text-lg'>
-            Dr. Nasrul Hakim. M.Kom, Phd
-          </div>
-        </div>
-      </div>
-      <div>
-
         <div className='flex p-2 border border-grey-400 shadow-lg bg-white flex-wrap rounded-sm'>
           <MenuDashboard />
         </div>

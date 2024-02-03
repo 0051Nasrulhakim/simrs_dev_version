@@ -33,7 +33,7 @@ export default function Page() {
                 id="username"
                 name="username"
                 className="w-[75%] p-2 border rounded-md focus:ring focus:border-blue-300"
-                placeholder="Your username"
+                placeholder="Masukkan Username"
               />
             </div>
 
@@ -46,7 +46,7 @@ export default function Page() {
                 id="password"
                 name="password"
                 className="w-[75%] p-2 border rounded-md focus:ring focus:border-blue-300"
-                placeholder="Your password"
+                placeholder="Masukkan Password"
               />
             </div>
             <div className="mb-4 flex items-center ml-[5%]">

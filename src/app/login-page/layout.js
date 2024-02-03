@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export default function RootLayout({ children }) {
   return (
-    <div className=' h-screen'>
+    <div className='h-screen'>
       <Image 
         src="/images/bg-login-type-a.jpg"
         fill={true}
