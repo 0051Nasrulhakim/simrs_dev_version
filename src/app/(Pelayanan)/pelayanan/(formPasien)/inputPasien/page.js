@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import ProvinsiSelect from '../componentForm/provinsiSelect'
 import KabupatenSelect from '../componentForm/kabupatenSelect';
 import KecamatanSelect from '../componentForm/kecamatanSelect';
-import RadioGender from '../componentForm/radiogender';
+import RadioGender from '../componentForm/radioGender';
 import TextAreaAlamat from '../componentForm/textAreaAlamat';
 
 export default function page() {
