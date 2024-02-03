@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 import React, { useState, useEffect } from 'react'
-import ProvinsiSelect from '../component/provinsiSelect';
-import KabupatenSelect from '../component/kabupatenSelect';
-import KecamatanSelect from '../component/kecamatanSelect';
-import RadioGender from '../component/radiogender';
-import TextAreaAlamat from '../component/textAreaAlamat';
+import ProvinsiSelect from '../componentForm/provinsiSelect'
+import KabupatenSelect from '../componentForm/kabupatenSelect';
+import KecamatanSelect from '../componentForm/kecamatanSelect';
+import RadioGender from '../componentForm/radiogender';
+import TextAreaAlamat from '../componentForm/textAreaAlamat';
 
 export default function page() {
   const [valueProvinsi, setProvinsi] = useState('');

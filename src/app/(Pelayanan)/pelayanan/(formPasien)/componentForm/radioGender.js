@@ -1,6 +1,6 @@
 // RadioGender.js
 import React, { useState } from 'react';
-import RadioGrup from './RadioGrup'; // Sesuaikan path dengan struktur folder Anda
+import RadioGrup from '../componentForm/radioGrup'; // Sesuaikan path dengan struktur folder Anda
 
 const RadioGender = ({ onChange }) => {
     const [jenisKelamin, setJenisKelamin] = useState('');
