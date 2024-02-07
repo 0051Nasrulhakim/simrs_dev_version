@@ -8,7 +8,7 @@ export default function MenuDashboard() {
     return (
         <>
             <div className='w-[15.43%] bg-green-600 rounded-md text-center text-wrap p-3 m-2 hover:bg-green-800	'>
-                <Link href='./pelayanan/inputPasien'>
+                <Link href='./pelayanan/pasien/inputPasien'>
                     <div className='text-white'>
                         <FontAwesomeIcon icon={faUserPlus} size='xl' />
                     </div>
@@ -18,20 +18,24 @@ export default function MenuDashboard() {
                 </Link>
             </div>
             <div className='w-[15.43%] bg-yellow-600 hover:bg-yellow-800 rounded-md text-center text-wrap p-3 m-2 '>
+                {/* <Link href="./pelayanan/pasien/"> */}
                 <div className='text-white'>
                     <FontAwesomeIcon icon={faUserPen} size='xl' />
                 </div>
                 <div className='font-bold text-white'>
                     Registrasi Antrian Poli
                 </div>
+                {/* </Link> */}
             </div>
             <div className='w-[15.43%] bg-lime-600 hover:bg-lime-800 rounded-md text-center text-wrap p-3 m-2 '>
-                <div className='text-white'>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} size='xl' />
-                </div>
-                <div className='font-bold text-white'>
-                    Cari Data Pasien
-                </div>
+                <Link href="./pelayanan/pasien/daftarPasien" >
+                    <div className='text-white'>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} size='xl' />
+                    </div>
+                    <div className='font-bold text-white'>
+                        Cari Data Pasien
+                    </div>
+                </Link>
             </div>
             <div className='w-[15.43%] bg-emerald-600	hover:bg-emerald-800 rounded-md text-center text-wrap p-3 m-2 '>
                 <div className='text-white'>
