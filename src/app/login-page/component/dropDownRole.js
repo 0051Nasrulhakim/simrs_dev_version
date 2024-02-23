@@ -10,13 +10,13 @@ export default function DropDownRole({ onSelectRole  }) {
             { value: 'admin', label: 'Admin' },
             { value: 'paramedis', label: 'Paramedis' },
             { value: 'dokter', label: 'Dokter' },
+            { value: 'manager', label: 'Manager' },
         ];
 
         setOptions(fetchedOptions);
     }, []);
 
     const handleChange = (selectedOption) => {
-        console.log('Selected Option:', selectedOption);
         onSelectRole(selectedOption);
     };
 

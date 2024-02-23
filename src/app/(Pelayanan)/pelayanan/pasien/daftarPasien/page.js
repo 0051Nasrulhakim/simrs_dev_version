@@ -2,41 +2,68 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import DataTable from './component/dataTable'
+import { callApi, findByRm } from './component/apiDaftarPasien'
 
 export default function page() {
 
     const [searchval, setSeacrhVal] = useState('');
     const [typeSearcVal, setTypeSeacrh] = useState('noBpjs');
+    const [dataPasien, setDataPasien] = useState([]);
 
-    // const changeSearch = 
+    const tampilkan = () => {
+        if (typeSearcVal === 'noRm') {
+            const fetchDataRm = async (searchval) => {
+                try {
 
-    const data = [
+                    const response = await findByRm(searchval);
+                    if (response.status_code === 200) {
+                        const dataArray = Object.values(response.data);
+                        if (dataArray.length > 0) {
+                            setDataPasien(dataArray);
+                        }
+                        else {
+                            setDataPasien(null)
+                        }
+                    } else {
+                        setDataPasien(null)
+                    }
 
-        {
-            noBpjs: '000000671667266',
-            noRm: '0009730',
-            namaPasien: 'Muhammad Ariza juniardi',
-            alamat: 'kalirejo Kajen kab. Pekalongan Jawa Tengah'
-        },
-        {
-            noBpjs: '000000671615627',
-            noRm: '0009732',
-            namaPasien: 'Maulana Ibrahim',
-            alamat: 'kertijayan Kajen kab. Pekalongan Jawa Tengah'
-        },
-        {
-            noBpjs: '000000671818920',
-            noRm: '0009733',
-            namaPasien: 'Ahmad Mirzano',
-            alamat: 'wonoyoso Buaran kab. Pekalongan Jawa Tengah'
-        },
+                } catch (e) {
+                    console.error('Error fetching data:', e);
+                }
+            }
+            fetchDataRm(searchval);
+        }
 
-    ];
+        if ( typeSearcVal === 'noBpjs'){
+            alert('FITUR DALAM PENGEMBANGAN')
+        }
+
+        if ( typeSearcVal === 'namaPasien'){
+            alert('FITUR DALAM PENGEMBANGAN')
+        }
+    }
 
     useEffect(() => {
-        console.log(typeSearcVal)
-    }, [typeSearcVal])
+        const fetchData = async () => {
+            try {
+                if (searchval === '') { // Tambahkan pengecekan searchval di sini
 
+                    const response = await callApi();
+                    if (response.status_code === 200) {
+                        const dataArray = Object.values(response.data); // Mengubah objek menjadi array
+                        setDataPasien(dataArray);
+                    } else {
+                        console.error('Error fetching data: Server response not OK');
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, [searchval]); // Tambahkan searchval ke dalam dependensi useEffect
 
     return (
         <div>
@@ -69,7 +96,7 @@ export default function page() {
                             name="Cari" id="Cari" className="block w-full rounded-md border-0 py-1.5 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 read-only:bg-gray-100 h-[2.37rem]" placeholder="Cari Data Pasien" />
                     </div>
                     <div className='py-2 px-2 ml-2 rounded-md text-white bg-blue-500 '>
-                        <button>
+                        <button onClick={tampilkan}>
                             Tampilkan
                         </button>
                     </div>
@@ -78,7 +105,7 @@ export default function page() {
 
             <div className='overflow-x-auto'>
                 <div className='tablePasien' id='tablePasien'>
-                    <DataTable data={data} />
+                    <DataTable data={dataPasien} />
                 </div>
             </div>
 

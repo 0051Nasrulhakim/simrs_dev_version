@@ -2,9 +2,12 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 const Select = dynamic(() => import('./component/dropDownRole'))
+import callLogin from './component/callLogin'
 
 export default function Page() {
   const [selectedRole, setSelectedRole] = useState(null);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleRoleChange = (selectedRole) => {
     setSelectedRole(selectedRole);
@@ -12,8 +15,8 @@ export default function Page() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Form submitted with role:', selectedRole);
-    alert("HALAMAN INI MASIH DALAM TAHAP PENGEMBANGAN")
+    // alert(selectedRole.value+username+password);
+    callLogin(username, password, selectedRole.value);
   };
 
   return (
@@ -30,6 +33,8 @@ export default function Page() {
               </label>
               <input
                 type="text"
+                value= { username }
+                onChange= { (event) => setUsername(event.target.value) }
                 id="username"
                 name="username"
                 className="w-[75%] p-2 border rounded-md focus:ring focus:border-blue-300"
@@ -43,6 +48,8 @@ export default function Page() {
               </label>
               <input
                 type="password"
+                value= { password }
+                onChange= { (event) => setPassword(event.target.value) }
                 id="password"
                 name="password"
                 className="w-[75%] p-2 border rounded-md focus:ring focus:border-blue-300"
