@@ -1,14 +1,18 @@
 // RadioGrup.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const RadioGrup = ({ options, onChange }) => {
-    const [selectedOption, setSelectedOption] = useState('');
+const RadioGrup = ({ options, onChange, value }) => {
+    const [selectedOption, setSelectedOption] = useState(value);
 
     const handleOptionChange = (event) => {
         const value = event.target.value;
         setSelectedOption(value);
         onChange(value);
     };
+
+    useEffect(() => {
+        setSelectedOption(value);
+    }, [value]);
 
     return (
         <div className="space-y-2">
