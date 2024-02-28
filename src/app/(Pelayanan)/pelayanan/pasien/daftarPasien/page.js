@@ -2,7 +2,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import DataTable from './component/dataTable'
-import { callApi, findByRm } from './component/apiDaftarPasien'
+import { callApi, findByRm, findByBpjs } from '../Api/callApiPasien'
 
 export default function page() {
 
@@ -16,6 +16,7 @@ export default function page() {
                 try {
 
                     const response = await findByRm(searchval);
+                    
                     if (response.status_code === 200) {
                         const dataArray = Object.values(response.data);
                         if (dataArray.length > 0) {
@@ -25,7 +26,7 @@ export default function page() {
                             setDataPasien(null)
                         }
                     } else {
-                        setDataPasien(null)
+                        setDataPasien(response)
                     }
 
                 } catch (e) {
@@ -36,7 +37,30 @@ export default function page() {
         }
 
         if ( typeSearcVal === 'noBpjs'){
-            alert('FITUR DALAM PENGEMBANGAN')
+
+            const fetchDataRm = async (searchval) => {
+                try {
+
+                    const response = await findByBpjs(searchval);
+                    console.log(response);
+                    if (response.status_code === 200) {
+                        const dataArray = Object.values(response.data);
+                        if (dataArray.length > 0) {
+                            setDataPasien(dataArray);
+                        }
+                        else {
+                            setDataPasien(null)
+                        }
+                    } else {
+                        setDataPasien(response)
+                    }
+
+                } catch (e) {
+                    console.error('Error fetching data:', e);
+                }
+            }
+            fetchDataRm(searchval);
+
         }
 
         if ( typeSearcVal === 'namaPasien'){
@@ -54,7 +78,7 @@ export default function page() {
                         const dataArray = Object.values(response.data); // Mengubah objek menjadi array
                         setDataPasien(dataArray);
                     } else {
-                        console.error('Error fetching data: Server response not OK');
+                        setDataPasien(response)
                     }
                 }
             } catch (error) {
