@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
+"use client"
 import React from 'react';
 import './component/login-page.css'
 import '../globals.css'
