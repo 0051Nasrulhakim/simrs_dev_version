@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-const MainMenu = dynamic(() => import('./mainMenu'))
+const MainMenu = dynamic(() => import('./mainMenu',))
 import '../globals.css'
 import '@fortawesome/react-fontawesome'
 import '@fortawesome/fontawesome-svg-core'
