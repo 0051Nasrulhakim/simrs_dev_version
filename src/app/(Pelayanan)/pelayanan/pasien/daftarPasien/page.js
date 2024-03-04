@@ -74,6 +74,7 @@ export default function page() {
                 if (searchval === '') { // Tambahkan pengecekan searchval di sini
 
                     const response = await callApi();
+
                     if (response.status_code === 200) {
                         const dataArray = Object.values(response.data); // Mengubah objek menjadi array
                         setDataPasien(dataArray);
@@ -82,7 +83,7 @@ export default function page() {
                     }
                 }
             } catch (error) {
-                console.error('Error fetching data:', error);
+                setDataPasien(undefined)
             }
         };
 
